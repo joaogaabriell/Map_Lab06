@@ -1,3 +1,3 @@
 public interface Figura {
-    void desenhar();
+    char desenhar();
 }

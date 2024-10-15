@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FabricaFiguraTest {
+
     @Test
     public void testGetInstancia() {
         FabricaFigura fabrica1 = FabricaFigura.getInstancia();

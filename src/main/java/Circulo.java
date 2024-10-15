@@ -5,13 +5,24 @@ public class Circulo implements Figura {
 
     public static Circulo getInstancia() {
         if (instancia == null) {
-            instancia = new Circulo();
+            try {
+                instancia = new Circulo();
+            } catch (Exception e) {
+                System.err.println("Erro ao criar a instância de Circulo: " + e.getMessage());
+                throw new RuntimeException("Falha ao criar a instância de Circulo", e);
+            }
         }
         return instancia;
     }
 
     @Override
-    public void desenhar() {
-        System.out.println("Desenhando um círculo.");
+    public char desenhar() {
+        try {
+            System.out.println("Desenhando um círculo.");
+        } catch (Exception e) {
+            System.err.println("Erro ao desenhar o círculo: " + e.getMessage());
+            throw new RuntimeException("Falha ao desenhar o círculo", e);
+        }
+        return 0;
     }
 }

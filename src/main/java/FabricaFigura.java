@@ -5,20 +5,40 @@ public class FabricaFigura {
 
     public static FabricaFigura getInstancia() {
         if (instancia == null) {
-            instancia = new FabricaFigura();
+            try {
+                instancia = new FabricaFigura();
+            } catch (Exception e) {
+                System.err.println("Erro ao criar a instância de FabricaFigura: " + e.getMessage());
+                throw new RuntimeException("Falha ao criar a instância de FabricaFigura", e);
+            }
         }
         return instancia;
     }
 
     public Figura criarCirculo() {
-        return Circulo.getInstancia();
+        try {
+            return Circulo.getInstancia();
+        } catch (Exception e) {
+            System.err.println("Erro ao criar Circulo: " + e.getMessage());
+            throw new RuntimeException("Falha ao criar Circulo", e);
+        }
     }
 
     public Figura criarTriangulo(String tipo) {
-        return Triangulo.getInstancia(tipo);
+        try {
+            return Triangulo.getInstancia(tipo);
+        } catch (Exception e) {
+            System.err.println("Erro ao criar Triangulo: " + e.getMessage());
+            throw new RuntimeException("Falha ao criar Triangulo", e);
+        }
     }
 
     public Figura criarQuadrado() {
-        return Quadrado.getInstancia();
+        try {
+            return Quadrado.getInstancia();
+        } catch (Exception e) {
+            System.err.println("Erro ao criar Quadrado: " + e.getMessage());
+            throw new RuntimeException("Falha ao criar Quadrado", e);
+        }
     }
 }

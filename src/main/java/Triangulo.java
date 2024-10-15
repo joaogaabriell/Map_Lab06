@@ -1,5 +1,8 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Triangulo implements Figura {
-    private static Triangulo instancia;
+    private static final Map<String, Triangulo> instancias = new HashMap<>();
     private String tipo;
 
     private Triangulo(String tipo) {
@@ -7,14 +10,25 @@ public class Triangulo implements Figura {
     }
 
     public static Triangulo getInstancia(String tipo) {
-        if (instancia == null) {
-            instancia = new Triangulo(tipo);
+        try {
+            if (!instancias.containsKey(tipo)) {
+                instancias.put(tipo, new Triangulo(tipo));
+            }
+            return instancias.get(tipo);
+        } catch (Exception e) {
+            System.err.println("Erro ao criar a instância de Triangulo: " + e.getMessage());
+            throw new RuntimeException("Falha ao criar a instância de Triangulo", e);
         }
-        return instancia;
     }
 
     @Override
-    public void desenhar() {
-        System.out.println("Desenhando um triângulo " + tipo + ".");
+    public char desenhar() {
+        try {
+            System.out.println("Desenhando um triângulo " + tipo + ".");
+        } catch (Exception e) {
+            System.err.println("Erro ao desenhar o triângulo: " + e.getMessage());
+            throw new RuntimeException("Falha ao desenhar o triângulo", e);
+        }
+        return 0;
     }
 }
